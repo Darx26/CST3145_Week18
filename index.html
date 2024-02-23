@@ -9,7 +9,7 @@
         integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
     <script src="products.js"></script>
     <style>
-        .product{
+        .product {
             border: 1px grey solid;
             padding: 20px;
             margin: 20px;
@@ -17,6 +17,11 @@
         }
     </style>
     <link rel="manifest" href="petstore.webmanifest">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('server-worker.js');
+        }; 
+    </script>
 </head>
 
 <body>
@@ -53,7 +58,8 @@
                         Add To Cart
                     </button>
                     <span v-if="product.availableInventory === cartCount(product.id)">All out!</span>
-                    <span v-else-if="product.availableInventory - cartCount(product.id) < 5">Only {{product.availableInventory -
+                    <span v-else-if="product.availableInventory - cartCount(product.id) < 5">Only
+                        {{product.availableInventory -
                         cartCount(product.id)}} left!</span>
                     <span v-else>Buy now!</span>
 
@@ -202,10 +208,10 @@
                 showCheckout() {
                     this.showProduct = this.showProduct ? false : true;
                 },
-                cartCount(id){
+                cartCount(id) {
                     let count = 0;
-                    for(let i=0; i<this.cart.length; i++){
-                        if(this.cart[i] === id){
+                    for (let i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i] === id) {
                             count++;
                         }
                     }
@@ -221,12 +227,12 @@
                     //its value when calculated
                     return this.cart.length || '';
                 },
-                sortedProducts(){
+                sortedProducts() {
                     let productsArray = this.products.slice(0);
-                    function compare(a,b){
-                        if(a.price > b.price)
+                    function compare(a, b) {
+                        if (a.price > b.price)
                             return 1;
-                        if(a.price < b.price)
+                        if (a.price < b.price)
                             return -1;
                         return 0;
                     }
