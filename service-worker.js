@@ -8,8 +8,6 @@ var cacheFiles = [
     'images/cat.jpg',
     'images/litter.jpg',
     'images/laser-pointer.jpg',
-    'images/math.png',
-    'images/math.jpg',
     'images/icon-store-512.png'
 ]
 
